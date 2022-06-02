@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  python-app-local:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    image: python-app-image-local
+    user: ${USER_ID}
+    env_file:
+      - .env
+    container_name: python-app-local
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3000:8000"
+    volumes:
+      - ./:/code
+    networks:
+      - python-app-net
+
+networks:
+  python-app-net:
+    name: python-app-net
