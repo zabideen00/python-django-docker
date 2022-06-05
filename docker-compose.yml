@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  python-app:
+    image: python-app-image
+    container_name: python-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    tty: true
+    ports:
+      - "4000:8000"
+    networks:
+      - python-app-net
+
+networks:
+  python-app-net:
+    name: python-app-net
